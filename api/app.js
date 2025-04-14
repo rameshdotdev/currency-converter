@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import { currencyRouter } from "./routes/currencyRoutes.js";
 dotenv.config();
 const app = express();
 
@@ -28,7 +29,8 @@ app.get("/api/health", (_, res) => {
 });
 
 // Routes
-
+app.use("/api/rates", currencyRouter);
+app.use("/api/convert", currencyRouter);
 // Error handling middleware
 app.use(errorHandler);
 
